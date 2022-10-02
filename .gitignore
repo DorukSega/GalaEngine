@@ -1,5 +1,7 @@
-# vscode
+# Ide & Cmake
 .vscode/*
+.idea/*
+cmake-build-debug/*
 
 # Engine
 Engine/bin/**

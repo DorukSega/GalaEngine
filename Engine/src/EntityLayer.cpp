@@ -24,7 +24,7 @@ void GalaEngine::EntityLayer::OnDraw(GalaEngine::Camera camera) {
     for(auto &e : _entities) {
         surface->DrawSprite(
             *e->sprite, e->spriteFrame,
-            e->position.x, e->position.y,
+            static_cast<int>(e->position.x), static_cast<int>(e->position.y),
             e->scale.x, e->scale.y,
             e->rotation,
             e->blendColour

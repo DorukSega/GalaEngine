@@ -1,6 +1,7 @@
 #include <GalaEngine/Scene.hpp>
+#include <utility>
 
-uint32_t GalaEngine::Scene::PushEntity(GalaEngine::Entity *entity, std::string name) {
+uint32_t GalaEngine::Scene::PushEntity(GalaEngine::Entity *entity, const std::string& name) {
     uint32_t id = _entities.size();
 
     _entities.insert(std::pair<uint32_t, Entity*>(id, entity));
@@ -12,7 +13,7 @@ uint32_t GalaEngine::Scene::PushEntity(GalaEngine::Entity *entity, std::string n
     return id;
 }
 
-GalaEngine::Entity *GalaEngine::Scene::GetEntity(std::string name) {
+GalaEngine::Entity *GalaEngine::Scene::GetEntity(const std::string& name) {
     auto ent = _entityNames.find(name);
     return (ent != _entityNames.end()) ? _entities[(*ent).second] : nullptr;
 }
@@ -39,7 +40,7 @@ GalaEngine::EntityLayer *GalaEngine::Scene::AddEntityLayer(Colour clearColour, i
 }
 
 GalaEngine::TileLayer *GalaEngine::Scene::AddTileLayer(Tileset tileset, std::vector<uint16_t> tiles, int width, int height, Colour clearColour, int position){
-    auto layer = new GalaEngine::TileLayer(tileset, tiles, width, height);
+    auto layer = new GalaEngine::TileLayer(tileset, std::move(tiles), width, height);
     PushLayer(layer, position);
     return layer;
 }
@@ -54,8 +55,8 @@ void GalaEngine::Scene::Update() {
         auto &ent = e.second;
 
         ent->worldMousePosition = Vector2 {
-            (float) (GetMouseX()) / GetScreenWidth()  * mainCamera.size.x + mainCamera.position.x,
-            (float) (GetMouseY()) / GetScreenHeight() * mainCamera.size.y + mainCamera.position.y
+            (float) (GetMouseX()) / static_cast<float>(GetScreenWidth())   * mainCamera.size.x + mainCamera.position.x,
+            (float) (GetMouseY()) / static_cast<float>(GetScreenHeight()) * mainCamera.size.y + mainCamera.position.y
         };
 
         ent->bbox = Rectangle {ent->position.x, ent->position.y, ent->bboxSize.x, ent->bboxSize.y};
@@ -70,24 +71,24 @@ void GalaEngine::Scene::RenderLayers() {
     if(targetSurface == nullptr) return;
 
     for(auto &p : _layers) {
-        auto &layerTexture = p.second->surface->texture.texture;
+        auto &layerTexture = p.second->surface->renderTexture.texture;
 
         p.second->OnDraw(mainCamera);
 
-        BeginTextureMode(targetSurface->texture);
+        BeginTextureMode(targetSurface->renderTexture);
         DrawTexturePro(
             layerTexture,
             Rectangle {
                 mainCamera.position.x,
-                layerTexture.height - (mainCamera.size.y + mainCamera.position.y),
+                static_cast<float>(layerTexture.height) - (mainCamera.size.y + mainCamera.position.y),
                 mainCamera.size.x,
                 -mainCamera.size.y
             },
             Rectangle {
                 0.0f,
                 0.0f,
-                (float)targetSurface->texture.texture.width,
-                (float)targetSurface->texture.texture.height
+                (float)targetSurface->renderTexture.texture.width,
+                (float)targetSurface->renderTexture.texture.height
             },
             {0.0f, 0.0f},
             0.0f,
@@ -103,6 +104,4 @@ GalaEngine::Scene::Scene(Surface *targetSurface, int width, int height) {
     this->_height       = height;
 }
 
-GalaEngine::Scene::Scene() {
-
-}
+GalaEngine::Scene::Scene() = default;

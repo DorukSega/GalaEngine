@@ -1,9 +1,6 @@
 #include <GalaEngine/EngineInfo.hpp>
 #include <GalaEngine/Game.hpp>
 #include <GalaEngine/Colour.hpp>
-#include <iostream>
-#include <cmath>
-#include <algorithm>
 #include <map>
 
 #include <Demos.hpp>
@@ -76,7 +73,7 @@ int main(int argc, char **argv) {
         int i = 0;
         for(auto &p : profiles) {
             Rectangle btnRec = {
-                64.0f, 176.0f + 40.0f * i,
+                64.0f, 176.0f + 40.0f * static_cast<float>(i),
                 256.0f, 32.0f
             };
 

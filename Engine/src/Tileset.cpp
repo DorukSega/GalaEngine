@@ -1,6 +1,6 @@
 #include <GalaEngine/Tileset.hpp>
 
-Rectangle GalaEngine::Tileset::GetTileRect(int x, int y) {
+Rectangle GalaEngine::Tileset::GetTileRect(int x, int y) const {
     return Rectangle {
         (float)(x * tileSize),
         (float)(y * tileSize),
@@ -9,7 +9,7 @@ Rectangle GalaEngine::Tileset::GetTileRect(int x, int y) {
     };
 }
 
-Rectangle GalaEngine::Tileset::GetTileRect(int tileID) {
+Rectangle GalaEngine::Tileset::GetTileRect(int tileID) const {
     int tilesX = texture.width / tileSize;
 
     return GetTileRect(tileID % tilesX, tileID / tilesX);

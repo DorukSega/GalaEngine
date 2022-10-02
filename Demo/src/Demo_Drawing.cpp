@@ -22,7 +22,7 @@ void Demo_Drawing::OnDraw() {
 
     // Texture tests
     window->surface.DrawTexture(
-        window->surface.texture.texture,
+        window->surface.renderTexture.texture,
         0, 0,
         0.5f, 0.5f,
         0.0f,
@@ -32,7 +32,7 @@ void Demo_Drawing::OnDraw() {
 
     window->surface.DrawTexture(
         tex_colourX,
-        rec_x, 32,
+         static_cast<int>(rec_x), 32,
         spr_scalex, spr_scaley,
         spr_rot,
         Vector2Multiply(spr_test.origin, {2.0f, 2.0f})
@@ -43,13 +43,13 @@ void Demo_Drawing::OnDraw() {
         bool outline = true;
 
         if(IsKeyDown(KEY_O)) {
-            outline = !(i == 7);
+            outline = i != 7;
         }
 
         window->surface.DrawEllipse(
             1280.0f / 2.0f, 720.0f / 2.0f,
-            1280.0f / 4.0f * (rec_o / i),
-            720.0f / 4.0f * (rec_o / i),
+            1280.0f / 4.0f * (rec_o / static_cast<float>(i)),
+            720.0f / 4.0f * (rec_o / static_cast<float>(i)),
             Colours::Crimson, outline,
             IsKeyDown(KEY_O) ? 2.0f : 1.0f
         );
@@ -63,8 +63,8 @@ void Demo_Drawing::OnDraw() {
     window->surface.DrawRectangleRounded(288.0f, 720.0f - 64.0f, 96.0f, 48.0f, rrec_r, Colours::Green, IsKeyUp(KEY_O), ell_o);
 
     // Line tests
-    window->surface.DrawLine(1280.0f / 2.0f, 0.0f, rec_x, rec_y, Colours::SeaGreen);
-    window->surface.DrawLine(1280.0f / 2.0f, 720.0f, rec_x, rec_y, 4.0f, Colours::ForestGreen);
+    window->surface.DrawLine(1280.0f / 2.0f, 0.0f, static_cast<int>(rec_x), static_cast<int>(rec_y), Colours::SeaGreen);
+    window->surface.DrawLine(1280.0f / 2.0f, 720.0f, static_cast<int>(rec_x), static_cast<int>(rec_y), 4.0f, Colours::ForestGreen);
 
     // Triangle tests
     window->surface.DrawTriangle(

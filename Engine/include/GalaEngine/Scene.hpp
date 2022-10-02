@@ -15,7 +15,7 @@
 #include <GalaEngine/Camera.hpp>
 #include <iostream>
 #include <map>
-#include <stdint.h>
+#include <cstdint>
 
 namespace GalaEngine {
     class Scene {
@@ -35,8 +35,8 @@ namespace GalaEngine {
             GalaEngine::Camera  mainCamera;
 
             // Entity & layers
-            uint32_t    PushEntity  (Entity *entity, std::string name = "");
-            Entity      *GetEntity  (std::string name);
+            uint32_t    PushEntity  (Entity *entity, const std::string& name = "");
+            Entity      *GetEntity  (const std::string& name);
             void        PushLayer   (Layer *layer, int position = -1);
 
             // Add default layer types

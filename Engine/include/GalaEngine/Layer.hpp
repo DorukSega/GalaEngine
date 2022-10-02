@@ -14,7 +14,7 @@
 namespace GalaEngine {
     class Layer {
         public:
-            Surface *surface;
+            Surface *surface{};
             Colour blendColour = C_WHITE;
 
             virtual void OnStart();

@@ -1,7 +1,8 @@
 #include <GalaEngine/AssetManager.hpp>
+#include <utility>
 
 // Getters
-Texture GalaEngine::AssetManager::GetTexture(std::string name) {
+Texture GalaEngine::AssetManager::GetTexture(const std::string& name) {
     if(textures.count(name)) {
         return textures[name];
     }
@@ -9,7 +10,7 @@ Texture GalaEngine::AssetManager::GetTexture(std::string name) {
     return Texture {0};
 }
 
-Sound GalaEngine::AssetManager::GetSound(std::string name) {
+Sound GalaEngine::AssetManager::GetSound(const std::string& name) {
     if(sounds.count(name)) {
         return sounds[name];
     }
@@ -17,7 +18,7 @@ Sound GalaEngine::AssetManager::GetSound(std::string name) {
     return Sound {0};
 }
 
-Font GalaEngine::AssetManager::GetFont(std::string name) {
+Font GalaEngine::AssetManager::GetFont(const std::string& name) {
     if(fonts.count(name)) {
         return fonts[name];
     }
@@ -26,7 +27,7 @@ Font GalaEngine::AssetManager::GetFont(std::string name) {
 }
 
 // Loading
-Texture GalaEngine::AssetManager::LoadTexture(std::string name, std::string path) {
+Texture GalaEngine::AssetManager::LoadTexture(const std::string& name, const std::string& path) {
     Texture tex = ::LoadTexture(path.c_str());
 
     if(textures.count(name)) { ::UnloadTexture(textures[name]); }
@@ -35,7 +36,7 @@ Texture GalaEngine::AssetManager::LoadTexture(std::string name, std::string path
     return tex;
 }
 
-Sound GalaEngine::AssetManager::LoadSound(std::string name, std::string path) {
+Sound GalaEngine::AssetManager::LoadSound(const std::string& name, const std::string& path) {
     Sound snd = ::LoadSound(path.c_str());
 
     if(sounds.count(name)) { ::UnloadSound(sounds[name]); }
@@ -44,7 +45,7 @@ Sound GalaEngine::AssetManager::LoadSound(std::string name, std::string path) {
     return snd;
 }
 
-Font GalaEngine::AssetManager::LoadFont(std::string name, std::string path) {
+Font GalaEngine::AssetManager::LoadFont(const std::string& name, const std::string& path) {
     Font fnt = ::LoadFont(path.c_str());
 
     if(fonts.count(name)) { ::UnloadFont(fonts[name]); }
@@ -54,17 +55,17 @@ Font GalaEngine::AssetManager::LoadFont(std::string name, std::string path) {
 }
 
 // Unloading
-void GalaEngine::AssetManager::UnloadTexture(std::string name) {
+void GalaEngine::AssetManager::UnloadTexture(const std::string& name) {
     ::UnloadTexture(textures[name]);
     textures.erase(name);
 }
 
-void GalaEngine::AssetManager::UnloadSound(std::string name) {
+void GalaEngine::AssetManager::UnloadSound(const std::string& name) {
     ::UnloadSound(sounds[name]);
     sounds.erase(name);
 }
 
-void GalaEngine::AssetManager::UnloadFont(std::string name) {
+void GalaEngine::AssetManager::UnloadFont(const std::string& name) {
     ::UnloadFont(fonts[name]);
     fonts.erase(name);
 }
@@ -89,5 +90,5 @@ void GalaEngine::AssetManager::UnloadAll() {
 
 // Constructor
 GalaEngine::AssetManager::AssetManager(AssetPathLayout pathLayout) {
-    this->pathLayout = pathLayout;
+    this->pathLayout = std::move(pathLayout);
 }

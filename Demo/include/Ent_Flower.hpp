@@ -11,8 +11,8 @@
 
 class Ent_Flower : public GalaEngine::Entity {
     public:
-        void OnStart();
-        void OnUpdate();
+        void OnStart() override;
+        void OnUpdate() override;
 
         Ent_Flower(int x, int y);
         Ent_Flower();

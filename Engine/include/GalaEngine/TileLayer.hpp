@@ -13,10 +13,10 @@
 namespace GalaEngine {
     class TileLayer : public Layer {
         public:
-            int width, height;
+            int width{}, height{};
             Tileset tileset;
             std::vector<uint16_t> tiles;
-            Texture texture;
+            Texture texture{};
 
             void OnStart();
             void OnUpdate();

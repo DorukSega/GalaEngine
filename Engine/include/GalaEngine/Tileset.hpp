@@ -14,11 +14,11 @@
 namespace GalaEngine {
     class Tileset {
         public:
-            Texture texture;
+            Texture texture{};
             int tileSize;
 
-            Rectangle GetTileRect(int tileX, int tileY);
-            Rectangle GetTileRect(int tileID);
+            Rectangle GetTileRect(int tileX, int tileY) const;
+            Rectangle GetTileRect(int tileID) const;
 
             Tileset(Texture texture, int tileSize);
             Tileset();

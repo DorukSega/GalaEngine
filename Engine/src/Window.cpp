@@ -1,4 +1,5 @@
 #include <GalaEngine/Window.hpp>
+#include <utility>
 
 // Initialisation & deconstruction
 void GalaEngine::Window::Init() {
@@ -28,14 +29,14 @@ void GalaEngine::Window::Init() {
 //     }
 // }
 
-void GalaEngine::Window::Render() {
+void GalaEngine::Window::Render() const {
     DrawTexturePro(
-        surface.texture.texture,
+        surface.renderTexture.texture,
         Rectangle {
             0.0f,
-            (float)surface.texture.texture.height,
-            (float)surface.texture.texture.width,
-            -(float)surface.texture.texture.height
+            (float)surface.renderTexture.texture.height,
+            (float)surface.renderTexture.texture.width,
+            -(float)surface.renderTexture.texture.height
         },
         Rectangle {
             0.0f,
@@ -70,7 +71,7 @@ int GalaEngine::Window::GetHeight() {
 
 // Constructors
 GalaEngine::Window::Window(std::string title, int width, int height, int targeFPS) {
-    _title = title;
+    _title = std::move(title);
     _width = width;
     _height = height;
     _targetFPS = targeFPS;

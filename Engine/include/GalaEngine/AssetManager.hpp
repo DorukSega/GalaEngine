@@ -30,19 +30,19 @@ namespace GalaEngine {
             std::map<std::string, Font>     fonts;
 
             // Getters
-            Texture GetTexture  (std::string name);
-            Sound   GetSound    (std::string name);
-            Font    GetFont     (std::string name);
+            Texture GetTexture  (const std::string& name);
+            Sound   GetSound    (const std::string& name);
+            Font    GetFont     (const std::string& name);
 
             // Loading
-            Texture LoadTexture (std::string name, std::string path);
-            Sound   LoadSound   (std::string name, std::string path);
-            Font    LoadFont    (std::string name, std::string path);
+            Texture LoadTexture (const std::string& name, const std::string& path);
+            Sound   LoadSound   (const std::string& name, const std::string& path);
+            Font    LoadFont    (const std::string& name, const std::string& path);
 
             // Unloading
-            void UnloadTexture  (std::string name);
-            void UnloadSound    (std::string name);
-            void UnloadFont     (std::string name);
+            void UnloadTexture  (const std::string& name);
+            void UnloadSound    (const std::string& name);
+            void UnloadFont     (const std::string& name);
 
             void UnloadAllTextures  ();
             void UnloadAllSounds    ();

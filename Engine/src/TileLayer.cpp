@@ -1,4 +1,5 @@
 #include <GalaEngine/TileLayer.hpp>
+#include <utility>
 
 void GalaEngine::TileLayer::OnStart() {
     // Initialise image for map render
@@ -50,7 +51,7 @@ GalaEngine::TileLayer::TileLayer(
     int tilesX, int tilesY
 ): Layer(tileset.tileSize * tilesX, tileset.tileSize * tilesY, C_CLEAR) {
     this->tileset = tileset;
-    this->tiles = tiles;
+    this->tiles = std::move(tiles);
     this->width = tilesX;
     this->height = tilesY;
 }

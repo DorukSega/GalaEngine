@@ -12,7 +12,7 @@
 namespace GalaEngine {
     class BackgroundLayer : public Layer {
         public:
-            Texture background;
+            Texture background{};
             Vector2 offset = {0.0f};
             Vector2 scrollSpeed = {0.0f};
             Vector2 scale = {1.0f, 1.0f};

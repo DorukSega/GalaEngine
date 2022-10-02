@@ -16,8 +16,8 @@
 class Demo_Drawing : public GalaEngine::Game {
     public:
         // Variables
-        Texture tex_sprite;
-        Texture tex_colourX;
+        Texture tex_sprite{};
+        Texture tex_colourX{};
         GalaEngine::Sprite spr_test;
         GalaEngine::Colour clearColour = C_RED;
 
@@ -45,10 +45,10 @@ class Demo_Drawing : public GalaEngine::Game {
             keypresses_mymethod = 0;
 
         // Game class overrides
-        void OnLoad();
-        void OnDraw();
-        void OnUpdate();
-        void OnUnload();
+        void OnLoad() override;
+        void OnDraw() override;
+        void OnUpdate() override;
+        void OnUnload() override;
 
         // Constructor
         Demo_Drawing();

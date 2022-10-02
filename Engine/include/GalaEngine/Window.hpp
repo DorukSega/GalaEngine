@@ -18,7 +18,7 @@ namespace GalaEngine {
             std::string _title;
             int _width, _height;
             int _targetFPS;
-            std::array<bool, KEY_KP_EQUAL> _keyStates;
+            std::array<bool, KEY_KP_EQUAL> _keyStates{};
 
         public:
             Surface surface;
@@ -30,13 +30,13 @@ namespace GalaEngine {
             // Initialisation, drawing, and destruction
             void Init();
             // void UpdateInput();
-            void Render();
+            void Render() const;
             void Exit();
 
             // Status getters
-            bool ShouldClose();
-            int GetWidth();
-            int GetHeight();
+            static bool ShouldClose();
+            static int GetWidth();
+            static int GetHeight();
 
             // Constructors
             Window(std::string title, int width, int height, int targetFPS = 60);

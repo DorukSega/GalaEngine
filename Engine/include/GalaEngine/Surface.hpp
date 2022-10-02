@@ -15,29 +15,29 @@
 namespace GalaEngine {
     class Surface {
         public:
-            RenderTexture texture;
+            RenderTexture renderTexture{};
             Colour clearColour = C_BLACK;
 
             // Points & lines
-            void DrawPixel(int x, int y, Colour colour = C_WHITE);
+            void DrawPixel(int x, int y, Colour colour = C_WHITE) const;
 
-            void DrawLine(int x1, int y1, int x2, int y2, Colour colour = C_WHITE);
-            void DrawLine(int x1, int y1, int x2, int y2, float thickness, Colour colour = C_WHITE);
+            void DrawLine(int x1, int y1, int x2, int y2, Colour colour = C_WHITE) const;
+            void DrawLine(int x1, int y1, int x2, int y2, float thickness, Colour colour = C_WHITE) const;
 
             // Primitives
-            void DrawRectangle(int x, int y, int width, int height, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f);
-            void DrawRectangle(int x, int y, int width, int height, float rotation, Vector2 origin = {0.0f, 0.0f}, Colour colour = C_WHITE);
-            void DrawRectangleColours(int x, int y, int width, int height, Colour c1, Colour c2, Colour c3, Colour c4);
-            void DrawRectangleRounded(int x, int y, int width, int height, float radius = 8.0f, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f);
+            void DrawRectangle(int x, int y, int width, int height, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f) const;
+            void DrawRectangle(int x, int y, int width, int height, float rotation, Vector2 origin = {0.0f, 0.0f}, Colour colour = C_WHITE) const;
+            void DrawRectangleColours(int x, int y, int width, int height, Colour c1, Colour c2, Colour c3, Colour c4) const;
+            void DrawRectangleRounded(int x, int y, int width, int height, float radius = 8.0f, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f) const;
 
-            void DrawCircle(int x, int y, float radius, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f);
-            void DrawCircle(int x, int y, float radius, Colour innerColour, Colour outerColour);
-            void DrawEllipse(int x, int y, float radiusH, float radiusV, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f);
+            void DrawCircle(int x, int y, float radius, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f) const;
+            void DrawCircle(int x, int y, float radius, Colour innerColour, Colour outerColour) const;
+            void DrawEllipse(int x, int y, float radiusH, float radiusV, Colour colour = C_WHITE, bool outline = false, float thickness = 1.0f) const;
 
-            void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Colour = C_WHITE, bool outline = false);
+            void DrawTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Colour = C_WHITE, bool outline = false) const;
 
             // Text
-            void DrawText(std::string text, int x, int y, int size = 20, Colour colour = C_WHITE);
+            void DrawText(const std::string& text, int x, int y, int size = 20, Colour colour = C_WHITE) const;
             
             // Textures
             void DrawTexture(
@@ -47,7 +47,7 @@ namespace GalaEngine {
                 float rotation,
                 Vector2 origin,
                 Colour blendColour = C_WHITE
-            );
+            ) const;
 
             void DrawTexture(
                 Texture texture,
@@ -55,14 +55,14 @@ namespace GalaEngine {
                 float scaleX = 1.0f, float scaleY = 1.0f,
                 float rotation = 0.0f,
                 Colour blendColour = C_WHITE
-            );
+            ) const;
 
             void DrawTexture(
                 Texture texture,
                 Rectangle src,
                 Rectangle dest,
                 Colour blendColour = C_WHITE
-            );
+            ) const;
 
             // Sprites
             void DrawSprite(
@@ -71,12 +71,12 @@ namespace GalaEngine {
                 float scaleX = 1.0f, float scaleY = 1.0f,
                 float rotation = 0.0f,
                 Colour blendColour = C_WHITE
-            );
+            ) const;
 
             // Misc
-            void Clear(Colour colour);
+            void Clear(Colour colour) const;
             void Clear();
-            Image GetImage();
+            Image GetImage() const;
             void Destroy();
 
             // Constructors

@@ -29,11 +29,11 @@ namespace GalaEngine {
         protected:
             GameInfo _info;
             bool _shouldEnd = false;
-            std::array<bool, KEY_KP_EQUAL> _keyStates;
+            std::array<bool, KEY_KP_EQUAL> _keyStates{};
 
         public:
             Window *window;         // Game window
-            Scene *scene;
+            Scene *scene{};
 
             virtual void OnLoad();
             virtual void OnUpdate();
@@ -43,7 +43,7 @@ namespace GalaEngine {
             void Start();
             void End();
             
-            Game(GameInfo info);
+            explicit Game(GameInfo info);
             Game();
     };
 }

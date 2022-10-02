@@ -1,6 +1,7 @@
 #include <GalaEngine/Game.hpp>
+#include <utility>
 
-void GalaEngine::Game::OnLoad   () {};
+void GalaEngine::Game::OnLoad   () {}
 void GalaEngine::Game::OnUpdate () {};
 void GalaEngine::Game::OnDraw   () {};
 void GalaEngine::Game::OnUnload () {};
@@ -11,7 +12,7 @@ void GalaEngine::Game::Start() {
 
     OnLoad();
 
-    while(!(window->ShouldClose() || _shouldEnd)) {
+    while(!(GalaEngine::Window::ShouldClose() || _shouldEnd)) {
         // Update
         scene->Update();
         OnUpdate();
@@ -25,7 +26,7 @@ void GalaEngine::Game::Start() {
         EndDrawing();
 
         if(IsKeyPressed(KEY_F9)) {
-            Image img_screen = LoadImageFromTexture(window->surface.texture.texture);
+            Image img_screen = LoadImageFromTexture(window->surface.renderTexture.texture);
             ExportImage(img_screen, "window_surface.png");
             UnloadImage(img_screen);
         }
@@ -40,7 +41,7 @@ void GalaEngine::Game::End() {
 }
 
 GalaEngine::Game::Game(GameInfo info) {
-    _info = info;
+    _info = std::move(info);
     window = new GalaEngine::Window(_info.title, _info.defaultWidth, _info.defaultHeight);
 }
 
