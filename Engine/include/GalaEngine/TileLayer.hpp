@@ -13,15 +13,15 @@
 namespace GalaEngine {
     class TileLayer : public Layer {
         public:
-            int width{}, height{};
+            int width=0, height=0;
             Tileset tileset;
             std::vector<uint16_t> tiles;
             Texture texture{};
 
-            void OnStart();
-            void OnUpdate();
-            void OnDraw(GalaEngine::Camera camera);
-            void OnDestroy();
+            void OnStart() override;
+            void OnUpdate() override;
+            void OnDraw(GalaEngine::Camera camera) override;
+            void OnDestroy() override;
 
             TileLayer(Tileset tileset, std::vector<uint16_t> tiles, int tilesX, int tilesY);
             TileLayer();

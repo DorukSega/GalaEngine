@@ -51,7 +51,7 @@ namespace GalaEngine {
             void UnloadAll();
 
             // Constructor
-            AssetManager(AssetPathLayout pathLayout = {
+             explicit AssetManager(AssetPathLayout pathLayout = {
                 "./base/",
                 "./textures/",
                 "./sounds/",

@@ -51,7 +51,7 @@ namespace GalaEngine {
             void    RenderLayers    ();
 
             // Constructors
-            Scene(Surface *targetSurface, int width = 640, int height = 480);
+            explicit Scene(Surface *targetSurface, int width = 640, int height = 480);
             Scene();
     };
 }

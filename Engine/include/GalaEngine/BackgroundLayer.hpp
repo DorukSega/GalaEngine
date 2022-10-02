@@ -17,10 +17,10 @@ namespace GalaEngine {
             Vector2 scrollSpeed = {0.0f};
             Vector2 scale = {1.0f, 1.0f};
 
-            void OnStart();
-            void OnUpdate();
-            void OnDraw(GalaEngine::Camera camera);
-            void OnDestroy();
+            void OnStart() override;
+            void OnUpdate() override;
+            void OnDraw(GalaEngine::Camera camera) override;
+            void OnDestroy() override;
 
             BackgroundLayer(int width, int height, Texture background, Colour clearColour = C_BLACK);
             BackgroundLayer();

@@ -40,3 +40,5 @@ GalaEngine::EntityLayer::EntityLayer(int width, int height, Colour clearColour) 
 Layer(width, height, clearColour) {
 
 }
+
+GalaEngine::EntityLayer::EntityLayer() = default;

@@ -34,9 +34,9 @@ namespace GalaEngine {
             void Exit();
 
             // Status getters
-            static bool ShouldClose();
-            static int GetWidth();
-            static int GetHeight();
+            bool ShouldClose();
+            int GetWidth();
+            int GetHeight();
 
             // Constructors
             Window(std::string title, int width, int height, int targetFPS = 60);

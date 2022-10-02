@@ -20,10 +20,10 @@ namespace GalaEngine {
             void AddEntity(GalaEngine::Entity *entity);
             void RemoveEntity(GalaEngine::Entity *entity);
 
-            void OnStart();
-            void OnUpdate();
-            void OnDraw(GalaEngine::Camera camera);
-            void OnDestroy();
+            void OnStart() override;
+            void OnUpdate() override;
+            void OnDraw(GalaEngine::Camera camera) override;
+            void OnDestroy() override;
 
             EntityLayer(int width, int height, Colour clearColour);
             EntityLayer();

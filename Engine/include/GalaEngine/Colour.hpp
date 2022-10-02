@@ -65,12 +65,12 @@ namespace GalaEngine {
 		uint8_t r, g, b, a;
 
 		Colour Lerp(Colour colour, float t) const;
-		static Colour Lerp(Colour c1, Colour c2, float t);
+        Colour Lerp(Colour c1, Colour c2, float t);
 
 		Vector4 Normalised() const;
-		static Vector4 Normalise(Colour colour);
+        Vector4 Normalise(Colour colour);
 
-		constexpr operator Color() {
+		constexpr explicit operator Color() {
 			return Color{r, g, b, a};
 		}
 	};
