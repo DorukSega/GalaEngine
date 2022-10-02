@@ -12,7 +12,7 @@ void GalaEngine::Game::Start() {
 
     OnLoad();
 
-    while(!(GalaEngine::Window::ShouldClose() || _shouldEnd)) {
+    while(!(window->ShouldClose() || _shouldEnd)) {
         // Update
         scene->Update();
         OnUpdate();

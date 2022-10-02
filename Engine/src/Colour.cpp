@@ -1,6 +1,6 @@
 #include <GalaEngine/Colour.hpp>
 
-GalaEngine::Colour GalaEngine::Colour::Lerp(Colour colour, float t) const {
+GalaEngine::Colour GalaEngine::Colour::Lerp(Colour colour, float t) const  {
     return Colour {
         (uint8_t)((float)r + t * (float)(colour.r - r)),
         (uint8_t)((float)g + t * (float)(colour.g - g)),

@@ -64,13 +64,13 @@ namespace GalaEngine {
 	struct Colour {
 		uint8_t r, g, b, a;
 
-		Colour Lerp(Colour colour, float t) const;
-        Colour Lerp(Colour c1, Colour c2, float t);
+        Colour Lerp(Colour colour, float t) const;
+        static Colour Lerp(Colour c1, Colour c2, float t);
 
-		Vector4 Normalised() const;
-        Vector4 Normalise(Colour colour);
+        Vector4 Normalised() const;
+        static Vector4 Normalise(Colour colour);
 
-		constexpr explicit operator Color() {
+		constexpr operator Color() {
 			return Color{r, g, b, a};
 		}
 	};

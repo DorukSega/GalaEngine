@@ -61,11 +61,11 @@ bool GalaEngine::Window::ShouldClose() {
     return WindowShouldClose();
 }
 
-int GalaEngine::Window::GetWidth() {
+int GalaEngine::Window::GetWidth() const {
     return GetScreenWidth();
 }
 
-int GalaEngine::Window::GetHeight() {
+int GalaEngine::Window::GetHeight() const {
     return GetScreenHeight();
 }
 
